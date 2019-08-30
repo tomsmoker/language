@@ -45,7 +45,7 @@ class OpsTest(tf.test.TestCase):
           hist_bounds=[2, 4, 6, 8]))
       it = data.make_initializable_iterator()
       sess.run(it.initializer)
-      sess.run(tf.local_variables_initializer())
+      sess.run(tf.compat.v1.local_variables_initializer())
       next_op = it.get_next()
 
       # Let the model gather statistics, it sees 4*5=20 = 2 epochs,

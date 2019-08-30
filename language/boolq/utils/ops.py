@@ -120,7 +120,7 @@ def lowercase_op(string_tensor):
   """Lowercase an arbitrarily sized string tensor."""
 
   shape = tf.shape(string_tensor)
-  lc = tf.py_func(_lowercase, [tf.reshape(string_tensor, [-1])], tf.string,
+  lc = tf.py_function(_lowercase, [tf.reshape(string_tensor, [-1])], tf.string,
                   False)
   return tf.reshape(lc, shape)
 

@@ -77,11 +77,11 @@ class EmbeddingUtilsTest(tf.test.TestCase):
       _, oov_metric = embeddings.oov_metric(features["s_wid"])
 
       with tf.Session() as sess:
-        sess.run([tf.global_variables_initializer(),
+        sess.run([tf.compat.v1.global_variables_initializer(),
                   tf.tables_initializer(),
                   iterator.initializer])
         embedding_scaffold.init_fn(sess)
-        sess.run([tf.local_variables_initializer()])
+        sess.run([tf.compat.v1.local_variables_initializer()])
 
         tf_embedding_weights = sess.run(embedding_weights)
         self.assertAllEqual(

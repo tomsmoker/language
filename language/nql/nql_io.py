@@ -18,8 +18,7 @@ from __future__ import absolute_import
 from __future__ import division
 
 from __future__ import print_function
-
-from language.nql import nql_symbol
+import nql_symbol
 import numpy
 import scipy.sparse
 import tensorflow as tf

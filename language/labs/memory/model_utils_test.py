@@ -33,8 +33,8 @@ class ModelUtilsTest(tf.test.TestCase):
 
         val, update_op = hamming_loss(preds, labels)
 
-        sess.run(tf.global_variables_initializer())
-        sess.run(tf.local_variables_initializer())
+        sess.run(tf.compat.v1.global_variables_initializer())
+        sess.run(tf.compat.v1.local_variables_initializer())
         sess.run(update_op)
 
         self.assertEqual(sess.run(val), .75)
@@ -47,8 +47,8 @@ class ModelUtilsTest(tf.test.TestCase):
 
         val, update_op = hamming_loss(preds, labels, sign=True)
 
-        sess.run(tf.global_variables_initializer())
-        sess.run(tf.local_variables_initializer())
+        sess.run(tf.compat.v1.global_variables_initializer())
+        sess.run(tf.compat.v1.local_variables_initializer())
         sess.run(update_op)
 
         self.assertEqual(sess.run(val), .5)

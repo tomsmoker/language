@@ -168,7 +168,7 @@ def model_function(features, labels, mode, vocab, hps):
           "lengths": lengths,
       }
     else:
-      predicted_ids, lengths = tf.py_func(
+      predicted_ids, lengths = tf.py_function(
           partial(remove_repetitive_trigram,
                   vocab=vocab,
                   hps=hps),

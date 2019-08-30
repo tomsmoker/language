@@ -14,7 +14,7 @@
 # limitations under the License.
 """Tests for nql_symbol."""
 
-from language.nql import nql_symbol
+import nql_symbol
 import tensorflow as tf
 
 

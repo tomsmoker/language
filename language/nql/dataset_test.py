@@ -14,8 +14,8 @@
 # limitations under the License.
 import tempfile
 
-from language.nql import dataset
-from language.nql import nql
+import dataset
+import nql
 import numpy as np
 import tensorflow as tf
 
@@ -46,13 +46,13 @@ class TestTFDataset(tf.test.TestCase):
       self.tf_string_type = bytes
 
   def as_list(self, dset):
-    it = tf.data.make_one_shot_iterator(dset).get_next()
+    it = tf.compat.v1.data.make_one_shot_iterator(dset).get_next()
     buf = []
     with tf.Session() as session:
       session.run([
-          tf.global_variables_initializer(),
-          tf.local_variables_initializer(),
-          tf.initializers.tables_initializer()
+          tf.compat.v1.global_variables_initializer(),
+          tf.compat.v1.local_variables_initializer(),
+          tf.compat.v1.initializers.tables_initializer()
       ])
       try:
         while True:

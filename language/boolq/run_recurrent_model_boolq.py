@@ -505,8 +505,8 @@ def evaluate():
     saver.restore(sess, checkpoint_file)
   else:
     tf.logging.warning("No checkpoint given, evaling model with random weights")
-    sess.run(tf.global_variables_initializer())
-  sess.run(tf.local_variables_initializer())
+    sess.run(tf.compat.v1.global_variables_initializer())
+  sess.run(tf.compat.v1.local_variables_initializer())
   sess.run(tf.tables_initializer())
   sess.run(it.initializer)
 

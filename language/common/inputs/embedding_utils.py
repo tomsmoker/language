@@ -199,7 +199,7 @@ class PretrainedWordEmbeddings(object):
 
     Unlike `get_params` this does not require running a Scaffold to initialize
     the variable, however this method is not compatible with `tf.SavedModel`
-    since it uses a `tf.py_func` to initialize the embedddings variable.
+    since it uses a `tf.py_function` to initialize the embedddings variable.
 
     Args:
       trainable: Boolean indicating whether the params should be trainable.
@@ -210,9 +210,9 @@ class PretrainedWordEmbeddings(object):
       embedding_weights: The embedding weights.
     """
 
-    # Hide `self._idx2emb` behind tf.py_func so its does not get serialized as
+    # Hide `self._idx2emb` behind tf.py_function so its does not get serialized as
     # as part of the graph and blow up our log sizes.
-    init_value = tf.py_func(lambda: self._idx2emb, [], tf.float32, False)
+    init_value = tf.py_function(lambda: self._idx2emb, [], tf.float32, False)
     init_value.set_shape([len(self._idx2emb), self._dims])
 
     with tf.variable_scope(scope, reuse=reuse):

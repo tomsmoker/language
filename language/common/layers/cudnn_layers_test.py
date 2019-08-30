@@ -42,7 +42,7 @@ class CudnnLayersTest(tf.test.TestCase):
           dropout_ratio=0.2,
           mode=tf.estimator.ModeKeys.TRAIN)
       with tf.Session() as sess:
-        sess.run(tf.global_variables_initializer())
+        sess.run(tf.compat.v1.global_variables_initializer())
         actual_output_emb = sess.run(output_emb)
       self.assertAllEqual(actual_output_emb.shape, [3, 5, 10 * 2])
 
@@ -73,7 +73,7 @@ class CudnnLayersTest(tf.test.TestCase):
             use_cudnn=True)
       saver = tf.train.Saver()
       with tf.Session(config=config) as sess:
-        sess.run(tf.global_variables_initializer())
+        sess.run(tf.compat.v1.global_variables_initializer())
         gpu_output_emb = sess.run(output_emb)
         saver.save(sess, checkpoint_path)
 

@@ -17,9 +17,9 @@
 import os
 import tempfile
 
-from language.nql import dataset
-from language.nql import nql
-from language.nql import util
+import dataset
+import nql
+import util
 import numpy as np
 import tensorflow as tf
 
@@ -188,7 +188,7 @@ class TestModelBuilder(BaseTester):
         shuffle_buffer_size=0,
         field_separator="|")
     x, y = self.session.run(
-        tf.data.make_one_shot_iterator(dset1).get_next())
+        tf.compat.v1.data.make_one_shot_iterator(dset1).get_next())
     self.check_batch(x, 0, "instance_t")
     self.check_batch(y, 0, "label_t")
 
@@ -207,7 +207,7 @@ class TestModelBuilder(BaseTester):
         shuffle_buffer_size=0,
         field_separator="|")
     x, y = self.session.run(
-        tf.data.make_one_shot_iterator(dset2).get_next())
+        tf.compat.v1.data.make_one_shot_iterator(dset2).get_next())
     # check that this is a minibatch containing the first two instances
     self.assertEqual(x.shape[0], 2)
     self.assertEqual(y.shape[0], 2)

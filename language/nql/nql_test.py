@@ -17,8 +17,11 @@
 import pprint
 import tempfile
 
-from language.nql import nql
-from language.nql import nql_test_lib
+import nql
+import nql_test_lib
+
+import nql
+import nql_test_lib
 import mock
 import numpy as np
 import tensorflow as tf

@@ -101,7 +101,7 @@ def print_text(tf_sequences, vocab, use_bpe=False, predict_mode=False):
   def _print_separator():
     if not predict_mode:
       tf.logging.info("=" * 80)
-  print_ops = [tf.py_func(_print_separator, [], [])]
+  print_ops = [tf.py_function(_print_separator, [], [])]
   for name, tf_sequence, tf_length, convert2txt in tf_sequences:
     def _do_print(n, sequence, lengths, to_txt):
       if to_txt:
@@ -113,10 +113,10 @@ def print_text(tf_sequences, vocab, use_bpe=False, predict_mode=False):
         tf.logging.info("%s: %s", n, output)
 
     with tf.control_dependencies(print_ops):
-      print_ops.append(tf.py_func(
+      print_ops.append(tf.py_function(
           _do_print, [name, tf_sequence, tf_length, convert2txt], []))
   with tf.control_dependencies(print_ops):
-    return tf.py_func(_print_separator, [], [])
+    return tf.py_function(_print_separator, [], [])
 
 
 def optimize_log_loss(decoder_tgt, decoder_outputs, weights, hps):

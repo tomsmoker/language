@@ -20,8 +20,8 @@ from __future__ import division
 
 from __future__ import print_function
 
-from language.nql import nql_io
-from language.nql import nql_symbol
+import nql_io
+import nql_symbol
 import numpy as np
 import scipy.sparse
 import tensorflow as tf

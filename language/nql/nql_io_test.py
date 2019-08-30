@@ -15,8 +15,8 @@
 """Tests for nql_io."""
 
 import tempfile
-from language.nql import nql_io
-from language.nql import nql_symbol
+import nql_io
+import nql_symbol
 import tensorflow as tf
 
 

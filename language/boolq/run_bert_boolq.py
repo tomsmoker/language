@@ -527,7 +527,7 @@ def input_fn_builder(features, seq_length, is_training, drop_remainder):
     num_examples = len(features)
 
     # This is for demo purposes and does NOT scale to large data sets. We do
-    # not use Dataset.from_generator() because that uses tf.py_func which is
+    # not use Dataset.from_generator() because that uses tf.py_function which is
     # not TPU compatible. The right way to load data is with TFRecordReader.
     d = tf.data.Dataset.from_tensor_slices({
         "input_ids":

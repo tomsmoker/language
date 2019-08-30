@@ -34,7 +34,7 @@ class CommonLayersTest(tf.test.TestCase):
           dropout_ratio=0.2,
           mode=tf.estimator.ModeKeys.TRAIN)
       with tf.Session() as sess:
-        sess.run(tf.global_variables_initializer())
+        sess.run(tf.compat.v1.global_variables_initializer())
         actual_output_emb = sess.run(output_emb)
       self.assertAllEqual(actual_output_emb.shape, [3, 5, 9])
 
@@ -47,7 +47,7 @@ class CommonLayersTest(tf.test.TestCase):
           dropout_ratio=0.2,
           mode=tf.estimator.ModeKeys.TRAIN)
       with tf.Session() as sess:
-        sess.run(tf.global_variables_initializer())
+        sess.run(tf.compat.v1.global_variables_initializer())
         actual_output_emb = sess.run(output_emb)
       self.assertAllEqual(actual_output_emb.shape, [3, 5, 9])
 
@@ -59,7 +59,7 @@ class CommonLayersTest(tf.test.TestCase):
       char_ids = char_utils.batch_word_to_char_ids(tf.constant(input_words), 10)
       output_emb = common_layers.character_cnn(char_ids, num_filters=5)
       with tf.Session() as sess:
-        sess.run(tf.global_variables_initializer())
+        sess.run(tf.compat.v1.global_variables_initializer())
         actual_output_emb = sess.run(output_emb)
       self.assertAllEqual(actual_output_emb.shape, [3, 2, 5])
 

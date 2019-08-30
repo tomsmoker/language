@@ -96,7 +96,7 @@ def where(condition, if_true, if_false):
 
 
 def shaped_py_func(func, inputs, types, shapes, stateful=True, name=None):
-  """Wrapper around tf.py_func that adds static shape information to the output.
+  """Wrapper around tf.py_function that adds static shape information to the output.
 
   Args:
     func: Python function to call.
@@ -109,7 +109,7 @@ def shaped_py_func(func, inputs, types, shapes, stateful=True, name=None):
   Returns:
     output_tensors: List of output tensors.
   """
-  output_tensors = tf.py_func(
+  output_tensors = tf.py_function(
       func=func,
       inp=inputs,
       Tout=types,

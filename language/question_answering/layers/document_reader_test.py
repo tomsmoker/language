@@ -35,7 +35,7 @@ class DocumentReaderTest(tf.test.TestCase):
           dropout_ratio=0.1,
           mode=tf.estimator.ModeKeys.TRAIN)
       with tf.Session() as sess:
-        sess.run(tf.global_variables_initializer())
+        sess.run(tf.compat.v1.global_variables_initializer())
         actual_start_score, actual_end_score = sess.run(
             [start_score, end_score])
       self.assertAllEqual(actual_start_score.shape, [3, 8])

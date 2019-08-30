@@ -171,7 +171,7 @@ def rouge_n(eval_sentences, eval_len, ref_sentences, ref_len, n,
 
 def rouge_n_metric(predictions, prediction_len, labels, label_len, n,
                    vocab, use_bpe=False, predict_mode=False):
-  return tf.metrics.mean(tf.py_func(
+  return tf.metrics.mean(tf.py_function(
       partial(rouge_n, n=n, vocab=vocab, use_bpe=use_bpe,
               predict_mode=predict_mode),
       [predictions, prediction_len, labels, label_len],
@@ -180,7 +180,7 @@ def rouge_n_metric(predictions, prediction_len, labels, label_len, n,
 
 def rouge_l_metric(predictions, prediction_len, labels, label_len,
                    vocab, use_bpe=False):
-  return tf.metrics.mean(tf.py_func(
+  return tf.metrics.mean(tf.py_function(
       partial(rouge_l, vocab=vocab, use_bpe=use_bpe),
       [predictions, prediction_len, labels, label_len],
       tf.float32))

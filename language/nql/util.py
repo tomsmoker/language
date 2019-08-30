@@ -21,7 +21,7 @@ from __future__ import print_function
 
 import time
 
-from language.nql import nql
+import nql
 import tensorflow as tf
 
 
@@ -332,8 +332,8 @@ class Trainer(object):
     self.labels_ph = labels_ph
     if initialize:
       session.run([
-          tf.global_variables_initializer(),
-          tf.local_variables_initializer(),
+          tf.compat.v1.global_variables_initializer(),
+          tf.compat.v1.local_variables_initializer(),
           tf.tables_initializer()
       ])
 
@@ -346,7 +346,7 @@ class Trainer(object):
     Returns:
       a TF expression that evaluates to the next minibatch.
     """
-    return tf.data.make_one_shot_iterator(dset).get_next()
+    return tf.compat.v1.data.make_one_shot_iterator(dset).get_next()
 
   def feed_dict_iterator(self, dset):
     """Iterator over feed_dict dictionaries.
